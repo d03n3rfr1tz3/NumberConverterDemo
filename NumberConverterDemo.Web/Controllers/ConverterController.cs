@@ -31,14 +31,15 @@
         /// <returns>The converted number.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">number</exception>
         [HttpGet("{number:decimal}")]
-        public string Get(decimal number)
+        public async Task<string> Get(decimal number)
         {
-            if (!this.NumberConverter.CanConvert(number))
+            if (!this.NumberConverter.CanConvert(number)) // make sure the given number can be converted
             {
                 throw new ArgumentOutOfRangeException(nameof(number));
             }
 
-            return this.NumberConverter.Convert(number);
+            // actually convert it now
+            return await this.NumberConverter.Convert(number);
         }
     }
 }
