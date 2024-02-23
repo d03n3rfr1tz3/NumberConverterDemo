@@ -12,6 +12,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseExceptionHandler("/error");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

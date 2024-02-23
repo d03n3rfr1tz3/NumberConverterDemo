@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using NumberConverterDemo.Core.Converter;
+    using NumberConverterDemo.Web.Models;
 
     [ApiController]
     [Route("[controller]")]
@@ -31,7 +32,7 @@
         /// <returns>The converted number.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">number</exception>
         [HttpGet("{number:decimal}")]
-        public async Task<string> Get(decimal number)
+        public async Task<NumberConversion> Get(decimal number)
         {
             if (!this.NumberConverter.CanConvert(number)) // make sure the given number can be converted
             {
@@ -39,7 +40,13 @@
             }
 
             // actually convert it now
-            return await this.NumberConverter.Convert(number);
+            var result = this.NumberConverter.Convert(number);
+
+            return new NumberConversion
+            {
+                Number = number,
+                Text = await result
+            };
         }
     }
 }
