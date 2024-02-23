@@ -83,9 +83,18 @@
             {
                 // higher two-parted numbers between 20 and 99
                 var higherIndex = (int)number / 10;
+                var lowerIndex = (int)number - (higherIndex * 10);
                 var higherDigit = HigherDigitMap[higherIndex];
-                var lowerDigit = LowerDigitMap[(int)number - (higherIndex * 10)];
-                result.Add($"{higherDigit}-{lowerDigit}");
+                var lowerDigit = LowerDigitMap[lowerIndex];
+
+                if (lowerIndex > 0)
+                {
+                    result.Add($"{higherDigit}-{lowerDigit}");
+                }
+                else
+                {
+                    result.Add($"{higherDigit}");
+                }
             }
             else if (number > 0 || number == Math.Truncate(input))
             {
