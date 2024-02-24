@@ -1,18 +1,25 @@
-<div class="container-fluid number-conversion">
+<div class="container number-conversion">
   <h1>NumberConverter</h1>
   <p>Welcome to the NumberConverter Demo. Input your desired number into the following field and this application will convert it for you.</p>
 
   <div class="input-group input-group-lg number-conversion-input">
     <span class="input-group-text">$</span>
-    <input type="number"
+    <input type="number" list="exampleNumbers"
            id="inputnumber" class="form-control"
            min="0" max="999999999.99" step="0.01" placeholder="0,00"
-           pattern="[0-9]{3}\.?[0-9]{3}\.?[0-9]{3},?[0-9]{0,2}"
-           (change)="handleChange($event)"
-           [(ngModel)]="number" />
+           pattern="^([0-9]{0,3})([. ]?[0-9]{3})?([. ]?[0-9]{3})(,[0-9]{0,2})?$"
+           (change)="handleChange($event)" />
   </div>
+  <datalist id="exampleNumbers">
+    <option value="0"></option>
+    <option value="1"></option>
+    <option value="0.01"></option>
+    <option value="25.10"></option>
+    <option value="45100.00"></option>
+    <option value="999999999.99"></option>
+  </datalist>
 
-  <div class="form-floating number-conversion-result" *ngIf="conversion.text">
+  <div class="form-floating number-conversion-result" *ngIf="(conversion.number || conversion.number === 0)">
     <textarea id="outputtext" class="form-control"
               placeholder="Number: {{ conversion.number }}"
               rows="2" readonly>{{ conversion.text }}</textarea>

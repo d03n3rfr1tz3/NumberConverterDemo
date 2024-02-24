@@ -8,7 +8,14 @@ export class NumberPipe implements PipeTransform {
   constructor(private decimalPipe: DecimalPipe) { }
 
   transform(value: number | string | null, digitsInfo?: string, locale?: string): string | null {
-    let result = this.decimalPipe.transform(value, digitsInfo, locale);
-    return (result ?? "").replace(/\./g, '');
+    if (navigator.userAgent.toLowerCase().includes('firefox')) {
+      // firefox needs a localized value
+      let result = this.decimalPipe.transform(value, digitsInfo, locale);
+      return (result ?? "").replace(/\./g, '');
+    } else {
+      // chromium needs a invariant value and applies localized format itself
+      let result = this.decimalPipe.transform(value, digitsInfo);
+      return (result ?? "").replace(/,/g, '');
+    }
   }
 }

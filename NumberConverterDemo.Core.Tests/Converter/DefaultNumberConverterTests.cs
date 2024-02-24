@@ -73,6 +73,7 @@ namespace NumberConverterDemo.Core.Tests.Converter
         [DataRow(100, "one hundred dollars")]
         [DataRow(1337, "one thousand three hundred thirty-seven dollars")]
         [DataRow(9000, "nine thousand dollars")]
+        [DataRow(0.50, "zero dollars and fifty cents")]
         [DataRow(08.15, "eight dollars and fifteen cents")]
         [DataRow(4711.50, "four thousand seven hundred eleven dollars and fifty cents")]
         [DataRow(123456789, "one hundred twenty-three million four hundred fifty-six thousand seven hundred eighty-nine dollars")]

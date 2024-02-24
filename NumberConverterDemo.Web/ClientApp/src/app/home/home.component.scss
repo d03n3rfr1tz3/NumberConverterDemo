@@ -1,0 +1,43 @@
+
+.number-conversion {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 75vw;
+  min-width: 320px;
+  min-height: 310px;
+
+  margin: 0;
+  padding: 2rem 3rem;
+  background: linear-gradient(rgba(255, 255, 255, 1), rgba(245, 245, 245, 0.85));
+  box-shadow: rgba(0, 0, 0, 0.15) 0.05rem 0.05rem 1.5rem;
+  border-radius: 0.5rem;
+
+  & > h1 {
+    margin: -2rem -3rem 2rem -3rem;
+    padding: 1rem 3rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  & > h1,
+  & > p {
+    text-align: center;
+  }
+
+  .number-conversion-input {
+    margin-top: 1rem;
+
+    input:invalid {
+      box-shadow: rgba(255, 0, 0, 0.2) 0 0 0 0.25rem;
+    }
+  }
+
+  .number-conversion-result {
+    margin-top: 1rem;
+
+    textarea {
+      max-height: 50vh;
+    }
+  }
+}
